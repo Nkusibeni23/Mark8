@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-start-rgb: #f4f5f6;
+  --secondary-color: #495d69;
+  --gray-background: #f4f5f6;
+  --button-color: #c1cf16;
+  --background-button: #0c0c0d;
+}
+
+.bg-gray-custom {
+  background-color: var(--gray-background);
+}
+.bg-primary-custom {
+  background-color: var(--background-button);
+}
+.bg-secondary-custom {
+  background-color: var(--button-color);
+}
+
+body {
+  font-size: 12px;
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-start-rgb);
+}
