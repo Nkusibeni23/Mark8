@@ -1,10 +1,11 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Page() {
   return (
     <>
       <main className="min-h-screen flex flex-col items-center justify-center bg-login-page bg-cover bg-center p-4">
-        <div className="w-full max-w-screen-md bg-white rounded-2xl overflow-hidden shadow-lg mb-6">
+        <div className="w-full max-w-screen-lg bg-white rounded-2xl overflow-hidden mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Left Grid */}
             <div className="bg-gray-custom p-10 flex flex-col items-center justify-center">
@@ -84,19 +85,22 @@ export default function Page() {
 
                 <div className="flex items-center mt-8">
                   <div className="w-full">
-                    <a href="#" className="underline text-black">
+                    <Link
+                      href="#"
+                      className="underline text-black text-sm md:text-base"
+                    >
                       Forgot Password?
-                    </a>
+                    </Link>
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 bg-secondary-custom text-lg text-black font-bold rounded-lg flex items-center justify-center gap-3"
+                    className="w-full py-3 bg-secondary-custom text-base text-black font-bold rounded-lg flex items-center justify-center gap-3 md:text-lg"
                   >
                     Login
                     <span>
                       <img
                         src="assets/icons/login-03.svg"
-                        className="w-6 h-6"
+                        className="w-5 h-5 md:w-6 md:h-6"
                         alt="Login Icon"
                       />
                     </span>
@@ -107,24 +111,24 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="w-full max-w-screen-md bg-white rounded-2xl overflow-hidden shadow-lg py-8 px-10">
+        <div className="w-full max-w-screen-lg bg-white rounded-2xl overflow-hidden py-8 px-10">
           <div className="flex items-center justify-between">
             <div className="space-y-2 w-full">
-              <p className="text-sm font-DM_Sans text-black font-medium">
+              <p className="text-xs font-DM_Sans text-black font-medium md:text-sm">
                 New Here?
               </p>
-              <p className="font-DM_Sans text-[#706f6f] font-medium">
+              <p className="font-DM_Sans text-[#706f6f] font-medium text-base md:text-sm">
                 Create an account
               </p>
             </div>
             <button className="px-3 py-3 border border-[#d5d5d5] rounded-md flex items-center justify-center space-x-2 w-2/4">
-              <p className="font-DM_Sans text-black font-semibold">
+              <p className="font-DM_Sans text-black font-semibold text-xs md:text-sm">
                 Register Here
               </p>
               <span>
                 <img
                   src="assets/icons/arrow-right-02.svg"
-                  className="w-5 h-5"
+                  className="w-4 h-4 md:w-5 md:h-5"
                   alt="Arrow Icon"
                 />
               </span>
