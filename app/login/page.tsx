@@ -1,9 +1,48 @@
-import Link from "next/link";
-import React from "react";
+"use client";
 
-export default function Page() {
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        "https://api.mark8.awesomity.rw/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        toast.success("Login successful!");
+        router.push("/");
+      } else {
+        toast.error("Login failed! Please check your credentials.");
+      }
+    } catch (error) {
+      console.error("Error", error);
+      toast.error("An error occurred. Please try again later.");
+    }
+  };
+
   return (
     <>
+      <ToastContainer />
       <main className="min-h-screen flex flex-col items-center justify-center bg-login-page bg-cover bg-center p-4">
         <div className="w-full max-w-screen-lg bg-white rounded-2xl overflow-hidden mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2">
@@ -27,7 +66,7 @@ export default function Page() {
               <h2 className="text-3xl font-bold text-gray-800 mb-6 font-DM_Sans">
                 Login
               </h2>
-              <form className="w-full">
+              <form className="w-full" onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label
                     className="block text-gray-700 text-sm font-medium mb-2 font-DM_Sans"
@@ -47,6 +86,8 @@ export default function Page() {
                       className="appearance-none rounded-xl w-full py-5 px-3 bg-[#ededed] leading-tight placeholder:text-[#706f6f] placeholder:font-regular placeholder:text-base font-DM_Sans text-[#706f6f] pl-14"
                       id="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="Enter email"
                     />
                   </div>
@@ -71,6 +112,8 @@ export default function Page() {
                       className="appearance-none rounded-xl w-full py-5 px-3 bg-[#ededed] leading-tight placeholder:text-[#706f6f] placeholder:font-regular placeholder:text-base font-DM_Sans text-[#706f6f] pl-14"
                       id="password"
                       type="password"
+                      value={formData.password}
+                      onChange={handleChange}
                       placeholder="Enter password"
                     />
                     <span className="absolute top-[14px] right-5 cursor-pointer">
