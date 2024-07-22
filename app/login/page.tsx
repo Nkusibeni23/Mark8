@@ -29,6 +29,8 @@ export default function LoginPage() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("Token:", data.accessToken);
+        localStorage.setItem("token", data.accessToken);
         toast.success("Login successful!");
         router.push("/");
       } else {

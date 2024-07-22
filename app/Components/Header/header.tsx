@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 import Link from "next/link";
-import { useUser } from "../../Context/userContext";
 
 const Header: React.FC = () => {
-  const { user } = useUser();
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
   const [showPopup, setShowPopup] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -16,8 +18,6 @@ const Header: React.FC = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-
-  console.log("user details:", user);
 
   return (
     <div className="fixed top-0 left-0 w-full bg-white shadow-sm z-50 border-b border-gray-300 p-4 sm:p-4 md:p-4 lg:px-16 xl:px-20">
@@ -176,19 +176,17 @@ const Header: React.FC = () => {
                 className="w-20 h-20 rounded-3xl"
                 alt="User"
               />
-
-              {user ? (
-                <div className="flex-1 space-y-1">
-                  <p className="font-DM_Sans text-base font-semibold">
-                    {user.firstName}
+              {/* {user ? (
+                <div>
+                  <p>
+                    {user.firstName} {user.lastName}
                   </p>
-                  <p className="font-DM_Sans text-xs text-[#495D69]">
-                    {user.email}
-                  </p>
+                  <p>{user.email}</p>
                 </div>
-              ) : null}
+              ) : (
+                <p>No user logged in</p>
+              )} */}
             </div>
-
             <div className="w-full mt-6 flex-1 mb-6">
               <div className="flex space-x-3 hover:bg-gray-100 p-4 rounded-md">
                 <img

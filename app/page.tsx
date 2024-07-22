@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Home from "./pages/home";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/user/userSlice";
 import Layout from "./Components/Layout";
-import { useUser } from "./Context/userContext";
+import Home from "./pages/home";
 
 export default function Page() {
-  const { setUser } = useUser();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      console.log("Fetching user data...");
+    const loginUser = async () => {
       try {
-        const response = await fetch(
+        // Login to get tokens
+        const loginResponse = await fetch(
           "https://api.mark8.awesomity.rw/auth/login",
           {
             method: "POST",
@@ -26,31 +27,55 @@ export default function Page() {
           }
         );
 
-        console.log("Response:", response); // Log the response object
+        if (loginResponse.ok) {
+          const loginData = await loginResponse.json();
+          console.log("Login Response Data:", loginData); // Log the entire response data
 
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Raw data:", data); // Log raw data
-          console.log("User data:", {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-          }); // Log extracted user data
-          setUser({
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-          });
+          const { accessToken, refreshToken } = loginData.data;
+          console.log("Access Token:", accessToken); // Log the access token
+          console.log("Refresh Token:", refreshToken); // Log the refresh token
+
+          // Save the tokens to local storage
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("refreshToken", refreshToken);
+
+          // Fetch user profile details using the access token
+          const profileResponse = await fetch(
+            "https://api.mark8.awesomity.rw/auth/profile",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+
+          if (profileResponse.ok) {
+            const profileData = await profileResponse.json();
+            console.log("Profile Response Data:", profileData); // Log the profile response data
+
+            // Dispatch user details to the Redux store
+            dispatch(
+              setUser({
+                firstName: profileData.firstName,
+                lastName: profileData.lastName,
+                email: profileData.email,
+              })
+            );
+          } else {
+            console.error("Failed to fetch user profile");
+          }
         } else {
-          console.error("Failed to fetch user data");
+          console.error("Failed to login");
         }
       } catch (error) {
-        console.error("Error fetching user data", error);
+        console.error("Error during login or fetching user profile", error);
       }
     };
 
-    fetchUserData();
-  }, [setUser]);
+    loginUser();
+  }, [dispatch]);
 
   return (
     <Layout>
