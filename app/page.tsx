@@ -10,10 +10,9 @@ export default function Page() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loginUser = async () => {
+    const fetchUserData = async () => {
       try {
-        // Login to get tokens
-        const loginResponse = await fetch(
+        const response = await fetch(
           "https://api.mark8.awesomity.rw/auth/login",
           {
             method: "POST",
@@ -27,54 +26,30 @@ export default function Page() {
           }
         );
 
-        if (loginResponse.ok) {
-          const loginData = await loginResponse.json();
-          console.log("Login Response Data:", loginData); // Log the entire response data
-
-          const { accessToken, refreshToken } = loginData.data;
-          console.log("Access Token:", accessToken); // Log the access token
-          console.log("Refresh Token:", refreshToken); // Log the refresh token
-
-          // Save the tokens to local storage
-          localStorage.setItem("accessToken", accessToken);
-          localStorage.setItem("refreshToken", refreshToken);
-
-          // Fetch user profile details using the access token
-          const profileResponse = await fetch(
-            "https://api.mark8.awesomity.rw/auth/profile",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          );
-
-          if (profileResponse.ok) {
-            const profileData = await profileResponse.json();
-            console.log("Profile Response Data:", profileData); // Log the profile response data
-
-            // Dispatch user details to the Redux store
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Response Data:", data);
+          if (data.token) {
+            console.log("Token:", data.token);
             dispatch(
               setUser({
-                firstName: profileData.firstName,
-                lastName: profileData.lastName,
-                email: profileData.email,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
               })
             );
           } else {
-            console.error("Failed to fetch user profile");
+            console.error("Token is missing in the response data");
           }
         } else {
-          console.error("Failed to login");
+          console.error("Failed to fetch user data");
         }
       } catch (error) {
-        console.error("Error during login or fetching user profile", error);
+        console.error("Error fetching user data", error);
       }
     };
 
-    loginUser();
+    fetchUserData();
   }, [dispatch]);
 
   return (

@@ -186,6 +186,12 @@ const Header: React.FC = () => {
               ) : (
                 <p>No user logged in</p>
               )} */}
+              <div className=" flex-1 space-y-2">
+                <p className="text-base font-semibold font-DM_Sans md:text-lg">
+                  User
+                </p>
+                <p className="text-xs font-DM_Sans sm:text-sm">user@user.com</p>
+              </div>
             </div>
             <div className="w-full mt-6 flex-1 mb-6">
               <div className="flex space-x-3 hover:bg-gray-100 p-4 rounded-md">

@@ -11,7 +11,7 @@ export default function Product() {
             src="assets/icons/delivery-box-01.svg"
             className="w-7 h-7 object-cover"
           />
-          <h2 className="font-DM_Sans font-semibold text-black text-base">
+          <h2 className="font-DM_Sans font-semibold text-black text-sm md:text-base">
             Recent Products (100)
           </h2>
         </div>
@@ -19,13 +19,13 @@ export default function Product() {
           <div className="border border-gray-300 rounded-lg p-2">
             <img
               src="assets/icons/filter.svg"
-              className="w-4 h-4 object-cover"
+              className="w-3 h-3 object-cover md:w-4 md:h-4"
             />
           </div>
           <div className="border border-gray-300 rounded-lg p-2">
             <img
               src="assets/icons/arrange-by-letters-a-z.svg"
-              className="w-4 h-4 object-cover"
+              className="w-3 h-3 object-cover md:w-4 md:h-4"
             />
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function Product() {
         <div className="flex-1">
           <Link
             href="/product"
-            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 w-full gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-4"
           >
             {Array.from({ length: 9 }).map((_, index) => (
               <div
@@ -51,24 +51,30 @@ export default function Product() {
                 />
                 <div className="flex items-center justify-between mb-6 px-4">
                   <div>
-                    <h3 className="font-DM_Sans font-normal text-base text-black mb-2">
+                    <h3 className="font-DM_Sans font-normal text-sm text-black mb-2 md:text-base">
                       Product {index + 1}
                     </h3>
                     <div className="flex items-center space-x-4">
-                      <p className="font-semibold text-base text-[#C1CF16]">
+                      <p className="font-semibold text-xs text-[#C1CF16] md:text-base">
                         9,000 Rwf
                       </p>
-                      <p className="font-semibold text-base text-[#DBDBDB] line-through">
+                      <p className="font-semibold text-xs text-[#DBDBDB] line-through md:text-base">
                         12,000 Rwf
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="border border-[#DBDBDB] rounded-lg p-2">
-                      <img src="assets/icons/shopping-cart-check-in-03.svg" />
+                      <img
+                        src="assets/icons/shopping-cart-check-in-03.svg"
+                        className=" w-4 h-4 md:w-5 md:h-5 object-cover"
+                      />
                     </div>
                     <div className="border border-[#DBDBDB] rounded-lg p-2">
-                      <img src="/assets/icons/favourite.svg" />
+                      <img
+                        src="/assets/icons/favourite.svg"
+                        className=" w-4 h-4 md:w-5 md:h-5 object-cover"
+                      />
                     </div>
                   </div>
                 </div>
