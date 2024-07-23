@@ -1,12 +1,9 @@
-// __test__/Page.test.tsx
-
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import Page from "../../app/saved/page"; // Adjust the import path according to your file structure
-import Layout from "../../app/Components/Layout"; // Adjust the import path according to your file structure
+import Page from "../../app/saved/page";
+import Layout from "../../app/Components/Layout";
 
-// Mocking the Layout component
 jest.mock("../../app/Components/Layout", () => {
   return ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
 });
@@ -15,10 +12,8 @@ describe("Product Page", () => {
   test("renders the saved products section correctly", () => {
     render(<Page />);
 
-    // Check if the saved products heading is rendered
     expect(screen.getByText("Saved Products")).toBeInTheDocument();
 
-    // Check if the saved products count is rendered
     expect(screen.getByText("6 Saved")).toBeInTheDocument();
   });
 
@@ -40,7 +35,6 @@ describe("Product Page", () => {
       expect(screen.getByText(productName)).toBeInTheDocument();
     });
 
-    // Verify product prices and discounts
     expect(screen.getByText("12,000 Rwf")).toBeInTheDocument();
     expect(screen.getByText("16,000 Rwf")).toBeInTheDocument();
   });
@@ -48,10 +42,8 @@ describe("Product Page", () => {
   test("renders call-to-action section correctly", () => {
     render(<Page />);
 
-    // Check if the CTA text is rendered
     expect(screen.getByText("Open your Store")).toBeInTheDocument();
 
-    // Check if the email input and submit button are rendered
     expect(screen.getByPlaceholderText("Enter your Email")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Submit/i })).toBeInTheDocument();
   });

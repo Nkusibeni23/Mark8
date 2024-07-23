@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Page from "../app/cart/page"; // Adjust the import path as needed
+import Page from "../app/cart/page";
 
 describe("Page component", () => {
   it("renders My Cart with correct product count", () => {
@@ -41,7 +41,7 @@ describe("Page component", () => {
     const deleteCartButtons = screen.getAllByAltText(/Delete/i);
 
     fireEvent.click(saveCartButton);
-    fireEvent.click(deleteCartButtons[0]); // Assuming you want to click the first delete button
+    fireEvent.click(deleteCartButtons[0]);
 
     expect(saveCartButton).toBeInTheDocument();
     expect(deleteCartButtons[0]).toBeInTheDocument();

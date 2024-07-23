@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import Page from "../../app/product/page"; // Adjust the import path according to your file structure
-
+import Page from "../../app/product/page";
 jest.mock("../../app/Components/Layout", () => {
   return ({ children }: { children: ReactNode }) => <div>{children}</div>;
 });
