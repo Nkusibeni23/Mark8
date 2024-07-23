@@ -41,6 +41,7 @@ const Header: React.FC = () => {
               </div>
             </Link>
           </div>
+
           {/* Show on large screens and hidden on medium screens and below */}
           <div className="hidden lg:flex items-center space-x-8">
             <Link

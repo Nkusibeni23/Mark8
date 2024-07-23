@@ -1,5 +1,7 @@
 import React from "react";
 
+const productNumber = 12932;
+
 export default function Welcome() {
   return (
     <div className="bg-[#1C2834] rounded-xl p-4 max-w-screen-2xl mx-2 sm:mx-8 md:mx-14 lg:mx-auto mt-20 lg:mt-10 md:mt-14 sm:mt-20">
@@ -10,7 +12,7 @@ export default function Welcome() {
           </h2>
           <div className="mt-6 flex-1 text-center">
             <p className="text-[#DBDBDB] font-light font-DM_Sans text-sm">
-              12,932 Products
+              {productNumber.toLocaleString()} Products
             </p>
             <div className="mt-6 flex justify-center w-full px-2 md:px-0 relative">
               <button className="absolute left-4 top-3 z-50 cursor-pointer">

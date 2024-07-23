@@ -1,6 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
+const productNumber = 9000;
+const productDiscount = 12000;
+
 export default function Product() {
   return (
     <div className="mt-8 bg-white rounded-xl max-w-screen-2xl mx-2 sm:mx-8 md:mx-14 lg:mx-auto p-4">
@@ -56,10 +59,10 @@ export default function Product() {
                     </h3>
                     <div className="flex items-center space-x-4">
                       <p className="font-semibold text-xs text-[#C1CF16] md:text-base">
-                        9,000 Rwf
+                        {productNumber.toLocaleString()} Rwf
                       </p>
                       <p className="font-semibold text-xs text-[#DBDBDB] line-through md:text-base">
-                        12,000 Rwf
+                        {productDiscount.toLocaleString()} Rwf
                       </p>
                     </div>
                   </div>
