@@ -35,8 +35,8 @@ describe("Product Page", () => {
       expect(screen.getByText(productName)).toBeInTheDocument();
     });
 
-    expect(screen.getByText("12,000 Rwf")).toBeInTheDocument();
-    expect(screen.getByText("16,000 Rwf")).toBeInTheDocument();
+    expect(screen.getByText("12000 Rwf")).toBeInTheDocument();
+    expect(screen.getByText("16000 Rwf")).toBeInTheDocument();
   });
 
   test("renders call-to-action section correctly", () => {

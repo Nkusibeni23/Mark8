@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
           <p className="font-DM_Sans font-semibold text-sm sm:text-base text-[#0C0D0D]">
-            &copy; 2024. Mark8
+            &copy; 2024 Mark8
           </p>
           <p className="font-DM_Sans font-light text-sm sm:text-base text-[#495D69]">
             By Awesomity Ltd

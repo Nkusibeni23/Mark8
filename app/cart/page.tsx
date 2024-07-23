@@ -23,6 +23,8 @@ export default function Page() {
     },
   ];
 
+  const total = 36000;
+
   return (
     <div className="bg-white max-w-screen-full mx-auto mt-12">
       <div className="w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-24 space-y-4 md:space-y-0">
@@ -70,7 +72,7 @@ export default function Page() {
             alt="Info"
           />
           <h3 className="font-DM_Sans text-lg text-[#495D69] font-normal">
-            By proceeding you won't be charged yet
+            By proceeding you won&apos;t be charged yet
           </h3>
         </div>
       </div>
@@ -137,7 +139,7 @@ export default function Page() {
               Total:
             </span>
             <p className="font-bold text-lg text-black font-DM_Sans">
-              36,000 Rwf
+              {total.toLocaleString()} Rwf
             </p>
           </div>
           <button
