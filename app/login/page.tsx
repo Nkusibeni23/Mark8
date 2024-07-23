@@ -91,6 +91,7 @@ export default function LoginPage() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Enter email"
+                      required
                     />
                   </div>
                 </div>
@@ -117,6 +118,7 @@ export default function LoginPage() {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="Enter password"
+                      required
                     />
                     <span className="absolute top-[14px] right-5 cursor-pointer">
                       <img
